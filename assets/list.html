@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>test repo</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<style>
+*{
+	margin: 0;
+	padding: 0;
+}
+body {
+  background: #fff;
+  font-size: 100%;
+  line-height: 1.75;
+  font-family: Roboto;
+  color: #333;
+  padding-bottom: 3em;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+.cf:before,
+.cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.cf:after {
+  clear: both;
+}
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 1em 2em;
+}
+.container > div {
+  float: left;
+  padding-right: 20px;
+}
+.ingredients {
+  width: 37%;
+  margin-right: 3%;
+}
+.ingredients li {
+  font-family: "Roboto Condensed", sans-serif;
+}
+.instructions {
+  width: 60%;
+}
+.details {
+  width: 100%;
+  background: #fff;
+  padding: 1em 0 2em;
+}
+dl,
+dt,
+dd {
+  float: left;
+}
+dl {
+  width: 33%;
+  padding: 0.5em 0;
+}
+dt {
+  font-family: "Roboto Condensed";
+  padding-right: 5px;
+  color: #C15B45;
+}
+dd {
+  color: #000;
+}
+h1 {
+  font-family: "Roboto Slab";
+  font-size: 2.5em;
+  line-height: 1;
+  color: #fff;
+  margin: 0;
+  padding: 1em 0;
+  display: block;
+  font-weight: 100;
+  text-align: center;
+}
+.recipe-title {
+  background: linear-gradient(90deg, #2ecc71 0%, #13c3ce 100%);
+}
+h2 {
+  font-family: Roboto;
+  font-size: 2em;
+  line-height: 1;
+  margin: 1em 0 0.5em;
+  padding-bottom: 0.25em;
+  font-weight: 400;
+  color: #C15B45;
+  border-bottom: 1px solid #db9e91;
+}
+ol {
+  counter-reset: my-counter;
+  list-style-type: none;
+}
+ol li {
+  counter-increment: my-counter;
+  margin-bottom: 1.5em;
+}
+ol li:before {
+  content: "Step " counters(my-counter, ".") ": ";
+  font-weight: 700;
+  text-transform: uppercase;
+}
+/* do the shopping list */
+.panel-two {
+  clear: both;
+}
+.shopping-list {
+  margin-top: 2em;
+}
+.shopping-list li {
+  height: 44px;
+  border-bottom: 1px dotted #E5A36F;
+  padding-top: 6px;
+}
+
+/* do the tabs */
+.simpletab {
+  <!-- background: #E5A36F; -->
+  margin-bottom: 3em;
+}
+.simpletabs {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0.5em 2em;
+  list-style: none;
+  background-color: rgb(0 0 0 / 0%);
+}
+.simpletabs li {
+  float: left;
+  width: 33.3%;
+  height: 48px;
+  padding-top: 8px;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  cursor: pointer;
+  <!-- margin-right: 1%; -->
+  background: #e39d66;
+}
+.simpletabs li:hover {
+  background: #dd8744;
+}
+.simpletabs li.selected {
+  background: #fff;
+  color: #404040;
+  font-size: 20px;
+  line-height: 30px;
+}
+.simpletab-wrapper {
+  background: #fff;
+}
+/* do the cooking list */
+.cooking-list {
+  counter-reset: cook-counter;
+  list-style-type: none;
+  margin: 2em auto 0;
+  font-size: 1.75em;
+}
+.cooking-list li {
+  counter-increment: cook-counter;
+  margin-bottom: 1.5em;
+  -webkit-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+}
+.cooking-list li:before {
+  content: "Step " counters(cook-counter, ".") ": ";
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.fade-me {
+  color: #ddd;
+  -webkit-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+}
+@media screen and (max-width: 800px) {
+  .container > div {
+    width: 100%;
+    padding-right: 0;
+  }
+  dl {
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+  dt {
+    padding-right: 10px;
+  }
+}
+/*=======*/
+.p-3 {
+    padding: 1rem!important;
+}
+.mb-3, .my-3 {
+    margin-bottom: 1rem!important;
+}
+.mt-3, .my-3 {
+    margin-top: 1rem!important;
+}
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+.rounded {
+    border-radius: .25rem!important;
+}
+.bg-white {
+    background-color: #fff!important;
+}
+.pb-2, .py-2 {
+    padding-bottom: .5rem!important;
+}
+.mb-0, .my-0 {
+    margin-bottom: 0!important;
+}
+.border-bottom {
+    border-bottom: 1px solid #dee2e6!important;
+}
+.h6, h6 {
+    font-size: 1rem;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.text-muted {
+    color: #6c757d!important;
+}
+.pt-3, .py-3 {
+    padding-top: 1rem!important;
+}
+.media {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.mr-2, .mx-2 {
+    margin-right: .5rem!important;
+}
+.rounded {
+    border-radius: .25rem!important;
+}
+svg {
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.lh-125 {
+    line-height: 1.25;
+}
+.pb-3, .py-3 {
+    padding-bottom: 1rem!important;
+}
+.mb-0, .my-0 {
+    margin-bottom: 0!important;
+}
+.border-bottom {
+    border-bottom: 1px solid #dee2e6!important;
+}
+.media-body {
+    -ms-flex: 1;
+    flex: 1;
+}
+.small, small {
+    font-size: 80%;
+    font-weight: 400;
+}
+.w-100 {
+    width: 100%!important;
+}
+.align-items-center {
+    -ms-flex-align: center!important;
+    align-items: center!important;
+}
+.justify-content-between {
+    -ms-flex-pack: justify!important;
+    justify-content: space-between!important;
+}
+.d-flex {
+    display: -ms-flexbox!important;
+    display: flex!important;
+}
+b, strong {
+    font-weight: bolder;
+}
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+.text-right {
+    text-align: right!important;
+}
+.d-block {
+    display: block!important;
+}
+
+
+
+
+
+
+
+
+
+</style>
+</head>
+<body>
+
+<div class="recipe-title">
+  <!-- <div class="container"> -->
+    <!-- <h1 id="recipe-title" class="saver">Repo iMod668</h1> -->
+  <!-- </div> -->
+    <ul class="simpletabs cf">
+    <li class="selected Full">Full</li>
+    <li class="Shop">Shop</li>
+    <li class="Cook">Cook</li>
+    <li class="iOS">iOS</li>
+    <li class="Jailbreak">Jailbreak</li>
+    <li class="Tweaks">Tweaks</li>
+  </ul>
+</div>
+
+<div class="simpletab">
+
+  <div class="simpletab-wrapper">
+  
+	<div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="border-bottom border-gray pb-2 mb-0">Suggestions</h6>
+    <div class="media text-muted pt-3">
+	  <img src="icons/Facebook.jpg" class="mr-2 rounded" width="32" height="32">
+      <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <strong class="text-gray-dark">Full Name</strong>
+          <a href="#">Follow</a>
+        </div>
+        <span class="d-block">@username</span>
+      </div>
+    </div>
+    <div class="media text-muted pt-3">
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+      <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <strong class="text-gray-dark">Full Name</strong>
+          <a href="#">Follow</a>
+        </div>
+        <span class="d-block">@username</span>
+      </div>
+    </div>
+
+    <small class="d-block text-right mt-3">
+      <a href="#">All suggestions</a>
+    </small>
+  </div>
+	
+
+    <div class="panel panel-one">
+
+      <div class="details cf">
+        <div class="container">
+          <h2>Details</h2>
+          <dl>
+            <dt>Prep time: </dt>
+            <dd id="prep-time" class="saver">10 minutes</dd>
+          </dl>
+          <dl>
+            <dt>Total time: </dt>
+            <dd id="total-time" class="saver">50 minutes</dd>
+          </dl>
+          <dl>
+            <dt>Skill level: </dt>
+            <dd class="saver">Easy</dd>
+          </dl>
+          <dl>
+            <dt>Serves: </dt>
+            <dd id="skill-level" class="saver">6</dd>
+          </dl>
+          <dl>
+            <dt>Healthy: </dt>
+            <dd id="healthy" class="saver">Yes</dd>
+          </dl>
+          <dl>
+            <dt>Freezable: </dt>
+            <dd id="freezable" class="saver">Yes</dd>
+          </dl>
+        </div>
+      </div>
+
+
+      <div class="container">  
+
+        <div class="ingredients">
+          <h2>Ingredients</h2>
+          <ul id="ingredients-list" class="saver">
+            <li>1 tbsp olive oil, plus extra for drizzling</li>
+            <li>200g cooking chorizo, peeled and diced</li>
+            <li>1 large onion, chopped</li>
+            <li>2 carrots, chopped</li>
+            <li>pinch of cumin seeds</li>
+            <li>3 garlic cloves, chopped</li>
+            <li>1 tsp smoked paprika, plus extra for sprinkling</li>
+            <li>pinch of golden caster sugar</li>
+            <li>small splash red wine vinegar</li>
+            <li>250g red lentils</li>
+            <li>2 x 400g cans chopped tomato</li>
+            <li>850ml chicken stock</li>
+            <li>plain yogurt, to serve</li>
+          </ul>
+        </div>
+
+        <div class="instructions">
+          <h2>Method</h2>
+          <ol id="method-list" class="saver">
+            <li>Heat the oil in a large pan. Add the chorizo and cook until crisp and it has released its oils. Remove with a slotted spoon into a bowl, leaving the fat in the pan. Fry the onion, carrots and cumin seeds for 10 mins until soft and glistening, then add the garlic and fry for 1 min more. Scatter over the paprika and sugar, cook for 1 min, then splash in the vinegar. Simmer for a moment, then stir in the lentils and pour the tomatoes and chicken stock over.</li>
+            <li>Give it a good stir, then simmer for 30 mins or until the lentils are tender. Blitz with a hand blender until smooth-ish but still chunky. Can be made several days ahead or frozen for 6 months at this point. Serve in bowls, drizzled with yogurt and olive oil, scattered with the chorizo and a sprinkling of paprika.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+//link header click active
+$(".simpletabs li").click(function() {
+    if ($(".simpletabs li").removeClass("selected")) {
+        $(this).removeClass("selected");
+    }
+    $(this).addClass("selected");
+	
+});
+
+
+</script>
+</body>
+</html>
